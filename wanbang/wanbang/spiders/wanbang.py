@@ -17,7 +17,7 @@ class wanbangSpider(Spider):
 
 
 	def start_requests(self):
-		url = 'http://www.wbtrans.com/index.asp?ty=130'
+		url = 'http://zhengzhou.wbtrans.com/index.asp?ty=130'
 		yield Request(url, headers=self.headers)
 
 	def parse(self, response):
@@ -27,8 +27,9 @@ class wanbangSpider(Spider):
 			item['iurl'] = 'http://zhengzhou.wbtrans.com/' + tuan.xpath(
 				'.//div[@class="tuanitem-meta-title"]/a/@href').extract()[0]
 			yield item
-
+'''
 		next_url = response.xpath('//div[@id="pagation"]/a[@title="下一页"]/@href').extract()
 		if next_url:
-			next_url = 'http://www.wbtrans.com/' + next_url[0]
+			next_url = 'http://zhengzhou.wbtrans.com/' + next_url[0]
 			yield Request(next_url, headers=self.headers,callback=self.parse)
+			'''
